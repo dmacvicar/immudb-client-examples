@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from immudb.client import ImmudbClient
 import json
-ic=ImmudbClient()
+ic=ImmudbClient("immudb:3322")
 ic.login(username="immudb", password="immudb")
 
 
