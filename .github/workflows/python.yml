@@ -31,6 +31,11 @@ jobs:
          python "$f"
         done
       working-directory: ./python
+    - run : |
+        pip install autopep8
+        autopep8 --exit-code --diff *.py
+      working-directory: ./python
+
       env:
         IMMUDB_HOST: immudb
         IMMUDB_PORT: ${{ job.services.immudb.ports[3322] }}
