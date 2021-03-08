@@ -14,7 +14,7 @@ def chunked(it, size):
             break
         yield p
 
-ic = ImmudbClient("localhost:3322")
+ic = ImmudbClient("immudb:3322")
 ic.login("immudb","immudb")
 
 print("Preparing dictionary:")

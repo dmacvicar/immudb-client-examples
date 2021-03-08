@@ -2,7 +2,7 @@
 
 from immudb.client import ImmudbClient
 
-ic=ImmudbClient()
+ic=ImmudbClient("immudb:3322")
 ic.login(username="immudb", password="immudb")
 
 key="Hello".encode('utf8')

@@ -55,7 +55,7 @@ parser.add_argument('--batched', default=False, action='store_true', help='Use b
 
 args=parser.parse_args()
 
-ic=ImmudbClient()
+ic=ImmudbClient("immudb:3322")
 ic.login("immudb","immudb")
 ic.databaseUse("defaultdb")
 

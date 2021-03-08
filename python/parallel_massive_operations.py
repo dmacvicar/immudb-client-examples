@@ -17,7 +17,7 @@ def chunked(it, size):
 
 
 def massive_test(taskid:int):
-    ic = ImmudbClient("localhost:3322")
+    ic = ImmudbClient("immudb:3322")
     ic.login("immudb","immudb")
 
     # let's fill a big dictionary:
