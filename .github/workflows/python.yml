@@ -22,20 +22,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: |
+    - name: Install Python SDK
+      run: |
         pip install immudb-py
-    - run: |
+    - name: Run examples
+      run: |
         for f in *.py
         do
          echo "Processing $f"
          python "$f"
         done
       working-directory: ./python
-    - run : |
+    - name: Run linter (pep8)
+      run : |
         pip install autopep8
         autopep8 --exit-code --diff *.py
       working-directory: ./python
-
       env:
         IMMUDB_HOST: immudb
         IMMUDB_PORT: ${{ job.services.immudb.ports[3322] }}
