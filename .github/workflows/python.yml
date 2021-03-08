@@ -1,0 +1,36 @@
+name: immudb examples Python
+
+on:
+  push:
+    branches:
+    - '**'
+  pull_request:
+    branches:
+    - '**'
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.8
+    services:
+      immudb:
+        image: codenotary/immudb:latest
+        ports:
+        - 3322:3322
+        options: --health-cmd "immuadmin status" --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+        pip install immudb-py
+    - run: |
+        for f in *.py
+        do
+         echo "Processing $f"
+         python "$f"
+        done
+      working-directory: ./python
+      env:
+        IMMUDB_HOST: immudb
+        IMMUDB_PORT: ${{ job.services.immudb.ports[3322] }}
